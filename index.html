@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>装机神器工具箱 | index1.html</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome图标 -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 自定义Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#7B61FF',
+                        accent: '#FF6B6B',
+                        success: '#36D399',
+                        warning: '#FBBD23',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                },
+            }
+        }
+    </script>
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20 hover:bg-primary/5;
+            }
+            .section-animate {
+                @apply opacity-0 animate-slide-up;
+                animation-fill-mode: forwards;
+            }
+            .bg-pattern {
+                background-image: radial-gradient(rgba(22, 93, 255, 0.1) 1px, transparent 1px);
+                background-size: 20px 20px;
+            }
+            .card-container {
+                @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+            }
+            .software-card {
+                @apply bg-white rounded-xl p-5 shadow-md flex flex-col text-left card-hover border-t-4;
+            }
+            .card-header {
+                @apply flex items-center mb-3;
+            }
+            .card-icon {
+                @apply text-2xl mr-3 flex-shrink-0;
+            }
+            .card-title {
+                @apply text-lg font-medium whitespace-nowrap;
+            }
+            .card-desc {
+                @apply text-sm text-gray-600;
+            }
+        }
+    </style>
+    <!-- 引入Google字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter bg-light bg-pattern min-h-screen">
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 transition-all duration-300 hover:bg-primary/90">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <!-- 头部区域 -->
+    <header class="py-12 px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
+        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-gradient mb-3">装机神器工具箱</h1>
+        <p class="text-gray-600 text-[clamp(1rem,2vw,1.2rem)] max-w-2xl mx-auto">
+            一站式新电脑装机必备软件集合，点击直接跳转下载，高效装机不迷路！
+        </p>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <!-- 1. 系统装机板块 -->
+        <section class="mb-12 section-animate" style="animation-delay: 0.1s">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-server text-primary text-xl"></i>
+                </div>
+                <h2 class="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold text-dark">系统装机必备</h2>
+                <div class="h-0.5 flex-grow ml-4 bg-gradient-to-r from-primary to-transparent"></div>
+            </div>
+            
+            <div class="card-container">
+                <!-- Ventoy -->
+                <a href="https://github.com/ventoy/Ventoy/releases" target="_blank" rel="noopener" 
+                   class="software-card border-primary">
+                    <div class="card-header">
+                        <i class="fa fa-usb text-primary card-icon"></i>
+                        <h3 class="card-title">Ventoy</h3>
+                    </div>
+                    <p class="card-desc">U盘多启动镜像工具，支持ISO文件直接启动</p>
+                </a>
+
+                <!-- Windows 10 -->
+                <a href="https://www.microsoft.com/zh-cn/software-download/windows10" target="_blank" rel="noopener" 
+                   class="software-card border-warning">
+                    <div class="card-header">
+                        <i class="fa fa-windows text-warning card-icon"></i>
+                        <h3 class="card-title">Windows 10 镜像</h3>
+                    </div>
+                    <p class="card-desc">微软官网原版系统镜像，安全可靠</p>
+                </a>
+
+                <!-- Windows 11 -->
+                <a href="https://www.microsoft.com/zh-cn/software-download/windows11" target="_blank" rel="noopener" 
+                   class="software-card border-warning">
+                    <div class="card-header">
+                        <i class="fa fa-windows text-warning card-icon"></i>
+                        <h3 class="card-title">Windows 11 镜像</h3>
+                    </div>
+                    <p class="card-desc">微软官网最新系统镜像，支持新硬件</p>
+                </a>
+
+                <!-- 系统之家 -->
+                <a href="https://www.xitongzhijia.net/" target="_blank" rel="noopener" 
+                   class="software-card border-secondary">
+                    <div class="card-header">
+                        <i class="fa fa-home text-secondary card-icon"></i>
+                        <h3 class="card-title">系统之家</h3>
+                    </div>
+                    <p class="card-desc">提供各类系统镜像资源和装机教程</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. 系统激活与监控板块 -->
+        <section class="mb-12 section-animate" style="animation-delay: 0.2s">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-tachometer text-secondary text-xl"></i>
+                </div>
+                <h2 class="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold text-dark">系统激活与监控</h2>
+                <div class="h-0.5 flex-grow ml-4 bg-gradient-to-r from-secondary to-transparent"></div>
+            </div>
+            
+            <div class="card-container">
+                <!-- HEU_KMS_Activator -->
+                <a href="https://github.com/zbezj/HEU_KMS_Activator/tags" target="_blank" rel="noopener" 
+                   class="software-card border-accent">
+                    <div class="card-header">
+                        <i class="fa fa-key text-accent card-icon"></i>
+                        <h3 class="card-title">HEU_KMS_Activator</h3>
+                    </div>
+                    <p class="card-desc">Windows系统一键激活工具，安全无毒</p>
+                </a>
+
+                <!-- TrafficMonitor -->
+                <a href="https://github.com/zhongyang219/TrafficMonitor" target="_blank" rel="noopener" 
+                   class="software-card border-success">
+                    <div class="card-header">
+                        <i class="fa fa-area-chart text-success card-icon"></i>
+                        <h3 class="card-title">TrafficMonitor</h3>
+                    </div>
+                    <p class="card-desc">显示网速、CPU和内存占用率的工具</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. 效率工具板块 -->
+        <section class="mb-12 section-animate" style="animation-delay: 0.3s">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-bolt text-success text-xl"></i>
+                </div>
+                <h2 class="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold text-dark">效率提升工具</h2>
+                <div class="h-0.5 flex-grow ml-4 bg-gradient-to-r from-success to-transparent"></div>
+            </div>
+            
+            <div class="card-container">
+                <!-- Everything -->
+                <a href="https://www.voidtools.com/zh-cn/support/everything/" target="_blank" rel="noopener" 
+                   class="software-card border-primary">
+                    <div class="card-header">
+                        <i class="fa fa-search text-primary card-icon"></i>
+                        <h3 class="card-title">Everything</h3>
+                    </div>
+                    <p class="card-desc">超快速文件搜索工具，瞬间定位文件</p>
+                </a>
+
+                <!-- DeskGo -->
+                <a href="https://guanjia.qq.com/product/zmzl/" target="_blank" rel="noopener" 
+                   class="software-card border-secondary">
+                    <div class="card-header">
+                        <i class="fa fa-desktop text-secondary card-icon"></i>
+                        <h3 class="card-title">DeskGo</h3>
+                    </div>
+                    <p class="card-desc">桌面整理与快速搜索工具，保持桌面整洁</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 4. 实用工具板块 -->
+        <section class="mb-12 section-animate" style="animation-delay: 0.4s">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mr-3">
+                    <i class="fa fa-wrench text-accent text-xl"></i>
+                </div>
+                <h2 class="text-[clamp(1.2rem,3vw,1.8rem)] font-semibold text-dark">实用工具集合</h2>
+                <div class="h-0.5 flex-grow ml-4 bg-gradient-to-r from-accent to-transparent"></div>
+            </div>
+            
+            <div class="card-container">
+                <!-- Geek -->
+                <a href="https://geekuninstaller.com/" target="_blank" rel="noopener" 
+                   class="software-card border-dark">
+                    <div class="card-header">
+                        <i class="fa fa-trash text-dark card-icon"></i>
+                        <h3 class="card-title">Geek</h3>
+                    </div>
+                    <p class="card-desc">强力卸载工具，彻底清除残留文件</p>
+                </a>
+
+                <!-- Bandizip -->
+                <a href="https://www.bandisoft.com/bandizip/" target="_blank" rel="noopener" 
+                   class="software-card border-primary">
+                    <div class="card-header">
+                        <i class="fa fa-file-zip-o text-primary card-icon"></i>
+                        <h3 class="card-title">Bandizip</h3>
+                    </div>
+                    <p class="card-desc">高效压缩解压工具，支持多种格式</p>
+                </a>
+
+                <!-- Snipaste -->
+                <a href="https://zh.snipaste.com/" target="_blank" rel="noopener" 
+                   class="software-card border-warning">
+                    <div class="card-header">
+                        <i class="fa fa-scissors text-warning card-icon"></i>
+                        <h3 class="card-title">Snipaste</h3>
+                    </div>
+                    <p class="card-desc">截图与标注工具，支持贴图功能</p>
+                </a>
+
+                <!-- 火绒 -->
+                <a href="https://www.huorong.cn/" target="_blank" rel="noopener" 
+                   class="software-card border-success">
+                    <div class="card-header">
+                        <i class="fa fa-shield text-success card-icon"></i>
+                        <h3 class="card-title">火绒</h3>
+                    </div>
+                    <p class="card-desc">轻量高效杀毒软件，无广告不弹窗</p>
+                </a>
+
+                <!-- Clash -->
+                <a href="https://github.com/clash-verge-rev/clash-verge-rev" target="_blank" rel="noopener" 
+                   class="software-card border-secondary">
+                    <div class="card-header">
+                        <i class="fa fa-globe text-secondary card-icon"></i>
+                        <h3 class="card-title">Clash</h3>
+                    </div>
+                    <p class="card-desc">网络代理工具，科学上网必备</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部区域 -->
+    <footer class="bg-dark text-white py-8 px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <p class="text-gray-400">© <span id="currentYear"></span> 装机神器工具箱</p>
+                <p class="text-gray-500 text-sm mt-1">高效装机，从这里开始</p>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fa fa-github text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fa fa-twitter text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fa fa-globe text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 设置当前年份
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // 回到顶部按钮逻辑
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.replace('opacity-0', 'opacity-100');
+            } else {
+                backToTopBtn.classList.replace('opacity-100', 'opacity-0');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 板块动画触发
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section-animate').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
