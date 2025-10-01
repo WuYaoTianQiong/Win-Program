@@ -118,11 +118,129 @@
             font-size: 0.875rem;
             color: #6B7280;
         }
+        
+        /* 光明/黑暗模式样式 */
+        .dark-mode {
+            background-color: #0F172A;
+            color: #E2E8F0;
+        }
+        .dark-mode .bg-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+        .dark-mode .text-gradient {
+            background-image: linear-gradient(to right, #60A5FA, #A78BFA);
+        }
+        .dark-mode .software-card {
+            background-color: #1E293B;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        }
+        .dark-mode .card-desc {
+            color: #94A3B8;
+        }
+        .dark-mode .text-gray-600 {
+            color: #94A3B8;
+        }
+        .dark-mode .text-gray-500 {
+            color: #64748B;
+        }
+        .dark-mode footer {
+            background-color: #0F172A;
+        }
+        .dark-mode .card-hover:hover {
+            background-color: rgba(96, 165, 250, 0.1);
+            box-shadow: 0 10px 25px rgba(96, 165, 250, 0.2);
+        }
+        .dark-mode .bg-primary\/10 {
+            background-color: rgba(96, 165, 250, 0.1);
+        }
+        .dark-mode .bg-secondary\/10 {
+            background-color: rgba(167, 139, 250, 0.1);
+        }
+        .dark-mode .bg-success\/10 {
+            background-color: rgba(52, 211, 153, 0.1);
+        }
+        .dark-mode .bg-accent\/10 {
+            background-color: rgba(251, 113, 133, 0.1);
+        }
+        .dark-mode .bg-warning\/10 {
+            background-color: rgba(251, 191, 36, 0.1);
+        }
+        .dark-mode .bg-info\/10 {
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+        .dark-mode .bg-dark\/10 {
+            background-color: rgba(148, 163, 184, 0.1);
+        }
+        .dark-mode .bg-light\/10 {
+            background-color: rgba(226, 232, 240, 0.1);
+        }
+        
+        /* 模式切换按钮 */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background-color: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .theme-toggle i {
+            font-size: 1.75rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .theme-toggle .fa-sun-o {
+            display: block;
+            color: #FBBD23;
+        }
+        .theme-toggle .fa-moon-o {
+            display: none;
+            color: #E2E8F0;
+        }
+        .dark-mode .theme-toggle {
+            background-color: #1E293B;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .dark-mode .theme-toggle .fa-sun-o {
+            display: none;
+        }
+        .dark-mode .theme-toggle .fa-moon-o {
+            display: block;
+        }
+        /* 确保大标题在黑暗模式下改变颜色 */
+        .dark-mode .text-dark {
+            color: #E2E8F0 !important;
+        }
+        /* 修复Geek方块在黑暗模式下的边框颜色 */
+        .dark-mode .border-dark {
+            border-top-color: #E2E8F0 !important;
+        }
     </style>
     <!-- 引入Google字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="font-inter bg-light bg-pattern min-h-screen">
+    <!-- 光明/黑暗模式切换按钮 -->
+    <button id="themeToggle" class="theme-toggle" title="切换主题">
+        <i class="fa fa-sun-o"></i>
+        <i class="fa fa-moon-o"></i>
+    </button>
+    
     <!-- 回到顶部按钮 -->
     <button id="backToTop" class="fixed bottom-6 right-6 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 transition-all duration-300 hover:bg-primary/90 z-50">
         <i class="fa fa-arrow-up"></i>
@@ -464,6 +582,48 @@
         document.querySelectorAll('.section-animate').forEach(section => {
             observer.observe(section);
         });
+        
+        // 光明/黑暗模式切换
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // 检查本地存储中的主题设置
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+        
+        // 切换主题
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // 切换Tailwind背景色类
+            if (body.classList.contains('dark-mode')) {
+                body.classList.replace('bg-light', 'bg-dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.replace('bg-dark', 'bg-light');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // 确保body有正确的背景色类
+        if (!body.classList.contains('bg-light') && !body.classList.contains('bg-dark')) {
+            body.classList.add('bg-light');
+        }
+        
+        // 根据系统主题自动设置初始主题
+        if (!savedTheme) {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                body.classList.add('dark-mode');
+                body.classList.replace('bg-light', 'bg-dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        } else if (savedTheme === 'dark') {
+            // 如果保存的主题是暗色，确保背景色类也是暗色
+            body.classList.replace('bg-light', 'bg-dark');
+        }
     </script>
 </body>
 </html>
