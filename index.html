@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>装机神器工具箱 | index1.html</title>
-    <!-- 引入Tailwind CSS -->
+    <title>装机神器工具箱</title>
+    <!-- 引入外部资源 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入Font Awesome图标 -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- 自定义Tailwind配置 -->
     <script>
         tailwind.config = {
@@ -27,68 +28,65 @@
                     },
                     animation: {
                         'fade-in': 'fadeIn 0.8s ease-in-out',
-                        'slide-up': 'slideUp 0.6s ease-out',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.6s ease-out'
                     },
                     keyframes: {
                         fadeIn: {
                             '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
+                            '100%': { opacity: '1' }
                         },
                         slideUp: {
                             '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
                         }
                     }
-                },
+                }
             }
         }
     </script>
+    
     <!-- 自定义工具类 -->
     <style>
+        /* 基础样式 */
         .text-gradient {
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             background-image: linear-gradient(to right, #165DFF, #7B61FF);
         }
+        
         .card-hover {
             transition: all 0.3s;
         }
+        
         .card-hover:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 25px rgba(22, 93, 255, 0.2);
             background-color: rgba(22, 93, 255, 0.05);
         }
+        
         .section-animate {
             opacity: 0;
-            animation: slideUp 0.6s ease-out;
-            animation-fill-mode: forwards;
+            animation: slideUp 0.6s ease-out forwards;
         }
+        
         .bg-pattern {
             background-image: radial-gradient(rgba(22, 93, 255, 0.1) 1px, transparent 1px);
             background-size: 20px 20px;
         }
+        
+        /* 卡片容器布局 */
         .card-container {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
-        @media (min-width: 640px) {
-            .card-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (min-width: 1024px) {
-            .card-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        @media (min-width: 1280px) {
-            .card-container {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
+        
+        @media (min-width: 640px) { .card-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .card-container { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1280px) { .card-container { grid-template-columns: repeat(4, 1fr); } }
+        
+        /* 软件卡片样式 */
         .software-card {
             background-color: white;
             border-radius: 0.75rem;
@@ -99,83 +97,79 @@
             text-align: left;
             border-top-width: 4px;
         }
+        
         .card-header {
             display: flex;
             align-items: center;
             margin-bottom: 0.75rem;
         }
+        
         .card-icon {
             font-size: 1.5rem;
             margin-right: 0.75rem;
             flex-shrink: 0;
         }
+        
         .card-title {
             font-size: 1.125rem;
             font-weight: 500;
             white-space: nowrap;
         }
+        
         .card-desc {
             font-size: 0.875rem;
             color: #6B7280;
         }
         
-        /* 光明/黑暗模式样式 */
+        /* 黑暗模式样式 */
         .dark-mode {
             background-color: #0F172A;
             color: #E2E8F0;
         }
+        
         .dark-mode .bg-pattern {
             background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
         }
+        
         .dark-mode .text-gradient {
             background-image: linear-gradient(to right, #60A5FA, #A78BFA);
         }
+        
         .dark-mode .software-card {
             background-color: #1E293B;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
         }
-        .dark-mode .card-desc {
-            color: #94A3B8;
-        }
+        
+        .dark-mode .card-desc,
         .dark-mode .text-gray-600 {
             color: #94A3B8;
         }
+        
         .dark-mode .text-gray-500 {
             color: #64748B;
         }
-        .dark-mode footer {
+        
+        .dark-mode footer,
+        .dark-mode .bg-dark {
             background-color: #0F172A;
         }
+        
         .dark-mode .card-hover:hover {
             background-color: rgba(96, 165, 250, 0.1);
             box-shadow: 0 10px 25px rgba(96, 165, 250, 0.2);
         }
-        .dark-mode .bg-primary\/10 {
-            background-color: rgba(96, 165, 250, 0.1);
-        }
-        .dark-mode .bg-secondary\/10 {
-            background-color: rgba(167, 139, 250, 0.1);
-        }
-        .dark-mode .bg-success\/10 {
-            background-color: rgba(52, 211, 153, 0.1);
-        }
-        .dark-mode .bg-accent\/10 {
-            background-color: rgba(251, 113, 133, 0.1);
-        }
-        .dark-mode .bg-warning\/10 {
-            background-color: rgba(251, 191, 36, 0.1);
-        }
-        .dark-mode .bg-info\/10 {
-            background-color: rgba(56, 189, 248, 0.1);
-        }
-        .dark-mode .bg-dark\/10 {
-            background-color: rgba(148, 163, 184, 0.1);
-        }
-        .dark-mode .bg-light\/10 {
-            background-color: rgba(226, 232, 240, 0.1);
-        }
         
-        /* 模式切换按钮 */
+        /* 颜色变体背景 */
+        .dark-mode .bg-primary\/10 { background-color: rgba(96, 165, 250, 0.1); }
+        .dark-mode .bg-secondary\/10 { background-color: rgba(167, 139, 250, 0.1); }
+        .dark-mode .bg-success\/10 { background-color: rgba(52, 211, 153, 0.1); }
+        .dark-mode .bg-accent\/10 { background-color: rgba(251, 113, 133, 0.1); }
+        .dark-mode .bg-warning\/10 { background-color: rgba(251, 191, 36, 0.1); }
+        .dark-mode .bg-info\/10 { background-color: rgba(56, 189, 248, 0.1); }
+        .dark-mode .bg-dark\/10 { background-color: rgba(148, 163, 184, 0.1); }
+        .dark-mode .bg-light\/10 { background-color: rgba(226, 232, 240, 0.1); }
+        
+        /* 主题切换按钮 */
         .theme-toggle {
             position: fixed;
             top: 1rem;
@@ -193,10 +187,12 @@
             z-index: 100;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        
         .theme-toggle:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
+        
         .theme-toggle i {
             font-size: 1.75rem;
             position: absolute;
@@ -204,35 +200,30 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-        .theme-toggle .fa-sun-o {
+        
+        .fa-sun-o {
             display: block;
             color: #FBBD23;
         }
-        .theme-toggle .fa-moon-o {
+        
+        .fa-moon-o {
             display: none;
             color: #E2E8F0;
         }
+        
         .dark-mode .theme-toggle {
             background-color: #1E293B;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .dark-mode .theme-toggle .fa-sun-o {
-            display: none;
-        }
-        .dark-mode .theme-toggle .fa-moon-o {
-            display: block;
-        }
-        /* 确保大标题在黑暗模式下改变颜色 */
-        .dark-mode .text-dark {
-            color: #E2E8F0 !important;
-        }
-        /* 修复Geek方块在黑暗模式下的边框颜色 */
-        .dark-mode .border-dark {
-            border-top-color: #E2E8F0 !important;
-        }
+        
+        .dark-mode .fa-sun-o { display: none; }
+        .dark-mode .fa-moon-o { display: block; }
+        
+        /* 特殊样式 */
+        .dark-mode .text-dark,
+        .dark-mode .border-dark { color: #E2E8F0 !important; }
+        .dark-mode .border-dark { border-top-color: #E2E8F0 !important; }
     </style>
-    <!-- 引入Google字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="font-inter bg-light bg-pattern min-h-screen">
     <!-- 光明/黑暗模式切换按钮 -->
@@ -554,76 +545,60 @@
 
     <!-- JavaScript -->
     <script>
-        // 设置当前年份
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // 回到顶部按钮逻辑
-        const backToTopBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.replace('opacity-0', 'opacity-100');
-            } else {
-                backToTopBtn.classList.replace('opacity-100', 'opacity-0');
-            }
-        });
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // 板块动画触发
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.section-animate').forEach(section => {
-            observer.observe(section);
-        });
-        
-        // 光明/黑暗模式切换
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        
-        // 检查本地存储中的主题设置
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-mode');
-        }
-        
-        // 切换主题
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', () => {
+            // 设置当前年份
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
             
-            // 切换Tailwind背景色类
-            if (body.classList.contains('dark-mode')) {
-                body.classList.replace('bg-light', 'bg-dark');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.classList.replace('bg-dark', 'bg-light');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-        
-        // 确保body有正确的背景色类
-        if (!body.classList.contains('bg-light') && !body.classList.contains('bg-dark')) {
-            body.classList.add('bg-light');
-        }
-        
-        // 根据系统主题自动设置初始主题
-        if (!savedTheme) {
+            // 元素引用
+            const backToTopBtn = document.getElementById('backToTop');
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            
+            // 主题初始化
+            const savedTheme = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (prefersDark) {
+            
+            // 确保body有背景色类
+            if (!body.classList.contains('bg-light') && !body.classList.contains('bg-dark')) {
+                body.classList.add('bg-light');
+            }
+            
+            // 根据保存的设置或系统偏好设置主题
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
                 body.classList.add('dark-mode');
                 body.classList.replace('bg-light', 'bg-dark');
                 localStorage.setItem('theme', 'dark');
             }
-        } else if (savedTheme === 'dark') {
-            // 如果保存的主题是暗色，确保背景色类也是暗色
-            body.classList.replace('bg-light', 'bg-dark');
-        }
+            
+            // 主题切换逻辑
+            themeToggle.addEventListener('click', () => {
+                const isDark = body.classList.toggle('dark-mode');
+                body.classList.replace(isDark ? 'bg-light' : 'bg-dark', isDark ? 'bg-dark' : 'bg-light');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+            
+            // 回到顶部按钮
+            window.addEventListener('scroll', () => {
+                backToTopBtn.classList.toggle('opacity-0', window.scrollY <= 300);
+                backToTopBtn.classList.toggle('opacity-100', window.scrollY > 300);
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // 板块动画
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.style.opacity = '1';
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.section-animate').forEach(section => {
+                observer.observe(section);
+            });
+        });
     </script>
 </body>
 </html>
