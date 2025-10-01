@@ -45,40 +45,78 @@
         }
     </script>
     <!-- 自定义工具类 -->
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-gradient {
-                @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
-            }
-            .card-hover {
-                @apply transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20 hover:bg-primary/5;
-            }
-            .section-animate {
-                @apply opacity-0 animate-slide-up;
-                animation-fill-mode: forwards;
-            }
-            .bg-pattern {
-                background-image: radial-gradient(rgba(22, 93, 255, 0.1) 1px, transparent 1px);
-                background-size: 20px 20px;
-            }
+    <style>
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #165DFF, #7B61FF);
+        }
+        .card-hover {
+            transition: all 0.3s;
+        }
+        .card-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(22, 93, 255, 0.2);
+            background-color: rgba(22, 93, 255, 0.05);
+        }
+        .section-animate {
+            opacity: 0;
+            animation: slideUp 0.6s ease-out;
+            animation-fill-mode: forwards;
+        }
+        .bg-pattern {
+            background-image: radial-gradient(rgba(22, 93, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 640px) {
             .card-container {
-                @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+                grid-template-columns: repeat(2, 1fr);
             }
-            .software-card {
-                @apply bg-white rounded-xl p-5 shadow-md flex flex-col text-left card-hover border-t-4;
+        }
+        @media (min-width: 1024px) {
+            .card-container {
+                grid-template-columns: repeat(3, 1fr);
             }
-            .card-header {
-                @apply flex items-center mb-3;
+        }
+        @media (min-width: 1280px) {
+            .card-container {
+                grid-template-columns: repeat(4, 1fr);
             }
-            .card-icon {
-                @apply text-2xl mr-3 flex-shrink-0;
-            }
-            .card-title {
-                @apply text-lg font-medium whitespace-nowrap;
-            }
-            .card-desc {
-                @apply text-sm text-gray-600;
-            }
+        }
+        .software-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            border-top-width: 4px;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .card-desc {
+            font-size: 0.875rem;
+            color: #6B7280;
         }
     </style>
     <!-- 引入Google字体 -->
